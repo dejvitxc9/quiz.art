@@ -14,8 +14,10 @@ export const store = configureStore({
         artDB: artDataReducer,
         quizDB: quizDataReducer,
         currentQuestion: currentQuestionReducer,
-        userAnswers: userAnswersReducer
-    }
+        userAnswers: userAnswersReducer,
+    },
+    devTools: process.env.NODE_ENV !== 'production',
+    //usunąć devtools
 })
 
 export type RootState = ReturnType<typeof store.getState>;

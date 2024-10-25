@@ -12,14 +12,13 @@ export const pointCouner = createSlice({
     name: 'pointCounter',
     initialState: initialState,
     reducers: {
-        increment: (state) => { state.value += 1 },
-        decrement: (state) => { state.value -= 1 },
-        incrementByAmount: (state, action) => { state.value += action.payload },
-        decrementByAmount: (state, action) => { state.value -= action.payload },
+        setPoints: (state, action) => { state.value = action.payload },
+        addPointsToAccount: (state, action) => { state.value += action.payload },
+        decrementPointsFromAccount: (state, action) => { state.value -= action.payload },
         resetToDefault: (state) => { state.value = 0 }
     }
 })
 
-export const { increment, decrement, incrementByAmount, decrementByAmount, resetToDefault } = pointCouner.actions;
+export const { setPoints, addPointsToAccount, decrementPointsFromAccount, resetToDefault } = pointCouner.actions;
 
 export default pointCouner.reducer

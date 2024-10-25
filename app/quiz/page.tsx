@@ -2,11 +2,9 @@
 
 import { ArtQuizCard, LoadingAnim, PrepareQuiz } from "@/components";
 import QuizSummary from "@/components/QuizSummary";
-import { fetchArtData } from "@/store/features/artData/artData";
 import { setQuizState } from "@/store/features/questionManagement/questionSlice";
 import { setQuizData } from "@/store/features/quizData/quizData";
 import { RootState, useAppDispatch } from "@/store/store";
-import { getQuizArtIDs } from "@/utils";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -26,6 +24,9 @@ const Quiz = () => {
 
   useEffect(() => {
     appDispatch(setQuizData(artList));
+    if (artList.length === numberOfQuestion) {
+      appDispatch(setQuizState("game"));
+    }
   }, [artList, appDispatch]);
 
   return (
@@ -45,9 +46,10 @@ const Quiz = () => {
                 answer3={quizList[currentQuestion].answer3}
                 answercor={quizList[currentQuestion].answercor}
                 questionType={quizList[currentQuestion].questionType}
+                pointsMultiplier={quizList[currentQuestion].pointsMultiplier}
               />
             ) : (
-              <></>
+              <LoadingAnim />
             )
           ) : quizState === "summary" ? (
             <QuizSummary />

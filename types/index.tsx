@@ -38,4 +38,17 @@ export interface QuizDataProps {
   answer3: string;
   answercor: string;
   questionType: QuestionType["questionType"];
+  pointsMultiplier: number
+}
+
+export interface GrantedPoints {
+  totalPoints: number;
+  correctQuestions: number;
+}
+
+export interface QuizArtStatsProps{
+  date: string,
+  level: string,
+  points: number,
+  correctAnswers: number
 }

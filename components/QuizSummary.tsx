@@ -1,7 +1,11 @@
 "use client";
 
-import { setQuizState } from "@/store/features/questionManagement/questionSlice";
-import { UserAnswer } from "@/store/features/usersAnswers/usersAnswersSlice";
+import { deleteAllArtData } from "@/store/features/artData/artData";
+import { resetGame } from "@/store/features/questionManagement/questionSlice";
+import {
+  deleteAllAnswers,
+  UserAnswer,
+} from "@/store/features/usersAnswers/usersAnswersSlice";
 import { RootState, useAppDispatch } from "@/store/store";
 import { useSelector } from "react-redux";
 
@@ -28,6 +32,12 @@ const QuizSummary = () => {
     { totalPoints: 0, correctQuestions: 0 }
   );
 
+  const handleRestartQuiz = () => {
+    appDispatch(deleteAllAnswers());
+    appDispatch(deleteAllArtData());
+    appDispatch(resetGame());
+  };
+
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-semibold text-center mb-4">Quiz Summary</h2>
@@ -44,7 +54,7 @@ const QuizSummary = () => {
         </p>
       </div>
       <button
-        onClick={() => appDispatch(setQuizState("prepare"))}
+        onClick={() => handleRestartQuiz()}
         className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200"
       >
         Restart Quiz

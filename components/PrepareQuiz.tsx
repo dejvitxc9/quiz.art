@@ -5,19 +5,16 @@ import {
   setNuberOfQuestions,
   setQuizState,
 } from "@/store/features/questionManagement/questionSlice";
-import { setQuizData } from "@/store/features/quizData/quizData";
-import { RootState, useAppDispatch } from "@/store/store";
+import { useAppDispatch } from "@/store/store";
 import { getQuizArtIDs } from "@/utils";
-import { useSelector } from "react-redux";
 
 const PrepareQuiz = () => {
   const appDispatch = useAppDispatch();
 
   const handleSetQuiz = (question: number) => {
-    console.log("ładuje dane");
     appDispatch(setNuberOfQuestions(question));
     appDispatch(fetchArtData(getQuizArtIDs(question)));
-    appDispatch(setQuizState("game"));
+    appDispatch(setQuizState("loading"));
   };
 
   return (
@@ -33,7 +30,7 @@ const PrepareQuiz = () => {
       <button
         className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg"
         onClick={() => {
-          appDispatch(setNuberOfQuestions(12));
+          handleSetQuiz(12);
         }}
       >
         Quiz Level 2
@@ -41,8 +38,7 @@ const PrepareQuiz = () => {
       <button
         className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg"
         onClick={() => {
-          appDispatch(setNuberOfQuestions(16));
-          appDispatch(setQuizState("loading"));
+          handleSetQuiz(16);
         }}
       >
         Quiz Level 3
@@ -50,8 +46,7 @@ const PrepareQuiz = () => {
       <button
         className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg"
         onClick={() => {
-          appDispatch(setNuberOfQuestions(20));
-          appDispatch(setQuizState("loading"));
+          handleSetQuiz(20);
         }}
       >
         Quiz Level 4
@@ -59,8 +54,7 @@ const PrepareQuiz = () => {
       <button
         className="bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg"
         onClick={() => {
-          appDispatch(setNuberOfQuestions(30));
-          appDispatch(setQuizState("loading"));
+          handleSetQuiz(30);
         }}
       >
         Quiz Level 5

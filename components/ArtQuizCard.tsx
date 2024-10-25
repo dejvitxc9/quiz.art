@@ -1,18 +1,20 @@
 "use client";
 
-import {
-  increment,
-  incrementByAmount,
-} from "@/store/features/points/pointsSlice";
+import { addPointsToAccount } from "@/store/features/points/pointsSlice";
 import {
   nextCurrentQuestion,
   previousCurrentQuestion,
   setQuizState,
 } from "@/store/features/questionManagement/questionSlice";
+// import { addStats } from "@/store/features/statsSlice/statsSlice";
 
-import { addAnswer } from "@/store/features/usersAnswers/usersAnswersSlice";
+import {
+  addAnswer,
+  UserAnswer,
+} from "@/store/features/usersAnswers/usersAnswersSlice";
 import { RootState, useAppDispatch } from "@/store/store";
 import { QuizDataProps } from "@/types";
+import { saveQuizStatsToLocalStorage } from "@/utils";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -24,7 +26,9 @@ const ArtQuizCard = ({
   answer3,
   answercor,
   questionType,
+  pointsMultiplier,
 }: QuizDataProps) => {
+
   const appDispatch = useAppDispatch();
 
   const currentQuestion = useSelector(
@@ -53,10 +57,45 @@ const ArtQuizCard = ({
         questionNumber: currentQuestion, // Numer aktualnego pytania
         correctAnswer: answercor, // Poprawna odpowiedź
         userAnswer: ans, // Wybór użytkownika
-        points: ans === answercor ? 1 : 0, // Przyznanie punktu, jeśli odpowiedź jest poprawna
+        points: ans === answercor ? pointsMultiplier : 0, // Przyznanie punktu, jeśli odpowiedź jest poprawna
       })
     );
   };
+  const userAnswers = useSelector(
+    (state: RootState) => state.userAnswers.answers
+  );
+  const grantedPoints = userAnswers.reduce(
+    (acc, userAnswer: UserAnswer) => {
+      if (userAnswer.userAnswer === userAnswer.correctAnswer) {
+        return {
+          totalPoints: acc.totalPoints + userAnswer.points,
+          correctQuestions: acc.correctQuestions + 1,
+        };
+      }
+      return acc;
+    },
+    { totalPoints: 0, correctQuestions: 0 }
+  );
+
+  const handleFinishQuiz = () => {
+    appDispatch(addPointsToAccount(grantedPoints.totalPoints));
+    saveQuizStatsToLocalStorage(numberOfQuestion, grantedPoints);
+    appDispatch(setQuizState("summary"));
+  };
+
+  const pointsColor = [
+    "bg-white text-black",
+    "bg-white text-black",
+    "bg-blue-400 text-white",
+    "bg-lime-500 text-white",
+    "bg-cyan-400 text-white",
+    "bg-yellow-500 text-white",
+    "bg-white text-black",
+    "bg-white text-black",
+    "bg-white text-black",
+    "bg-white text-black",
+    "bg-violet-600 text-white",
+  ];
 
   const question: string = (() => {
     switch (questionType) {
@@ -74,7 +113,6 @@ const ArtQuizCard = ({
         return "Unknown question type.";
     }
   })();
-  console.log(answercor);
 
   return (
     <div className="flex flex-col bg-slate-600 text-white rounded-lg font-semibold p-4 gap-4">
@@ -89,7 +127,14 @@ const ArtQuizCard = ({
           </div>
         </div>
         <div className="flex flex-1 flex-col">
-          <h3 className="mb-4 text-lg">{question}</h3>
+          <div className="flex flex-row justify-between content-center items-center">
+            <h3 className="text-lg">{question}</h3>
+            <div
+              className={`py-4 px-4 size-16 flex justify-center items-center rounded-full font-bold text-3xl ${pointsColor[pointsMultiplier]}`}
+            >
+              x{pointsMultiplier}
+            </div>
+          </div>
 
           {usersChoice ? (
             <h1>
@@ -101,7 +146,9 @@ const ArtQuizCard = ({
                 {mixedAnswers.map((answer, index) => (
                   <button
                     key={index}
-                    className="flex-1 bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg"
+                    className={`flex-1 bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg ${
+                      answer === answercor ? "bg-green-400" : ""
+                    }`}
                     onClick={() => selectAnswer(answer)}
                   >
                     {answer}
@@ -134,7 +181,7 @@ const ArtQuizCard = ({
         ) : (
           <button
             className="bg-red-600 hover:bg-red-800 text-white py-2 px-4 rounded-lg"
-            onClick={() => appDispatch(setQuizState("summary"))}
+            onClick={() => handleFinishQuiz()}
           >
             Finish Quiz!
           </button>

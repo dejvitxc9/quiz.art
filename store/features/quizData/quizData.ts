@@ -1,6 +1,7 @@
 'use client'
 
 import { ArtDataProps, QuizDataProps } from "@/types"
+import { getRandomPointForQuestion } from "@/utils";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface QuizArtStateProps {
@@ -30,19 +31,24 @@ export const quizData = createSlice({
 
                 const randomQuestionType = questionTypes[randomIndex];
 
-                const answer1wrong = artData[Math.floor(Math.random() * artData.length)][randomQuestionType];
-                const answer2wrong = artData[Math.floor(Math.random() * artData.length)][randomQuestionType];
-                const answer3wrpng = artData[Math.floor(Math.random() * artData.length)][randomQuestionType];
+                const wrongAnswersTest = new Set([element[randomQuestionType]]);
 
+                while (wrongAnswersTest.size < 4) {
+                    const randomElement = artData[Math.floor(Math.random() * artData.length)];
+                    wrongAnswersTest.add(randomElement[randomQuestionType]);
+                }
+
+                const wrongAnswers = Array.from(wrongAnswersTest);
 
                 return {
                     id: element.id,
                     image_id: element.image_id,
-                    answer1: answer1wrong,
-                    answer2: answer2wrong,
-                    answer3: answer3wrpng,
+                    answer1: wrongAnswers[1],
+                    answer2: wrongAnswers[2],
+                    answer3: wrongAnswers[3],
                     answercor: element[randomQuestionType],
                     questionType: randomQuestionType,
+                    pointsMultiplier: getRandomPointForQuestion()
                 };
             });
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 import CustomButton from "./CustomButton";
 import { useRouter } from "next/navigation";
 import { RootState, useAppDispatch } from "./../store/store";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { setQuizState } from "@/store/features/questionManagement/questionSlice";
 
 const NavBar = () => {
@@ -47,7 +47,6 @@ const NavBar = () => {
           title="Quiz"
           handleClick={() => {
             window.navigator.vibrate([70]);
-            // appDispatch(setQuizState("prepare"));
             router.push("/quiz");
           }}
           btnStyle="bg-primary-blue text-white rounded-full"
@@ -56,7 +55,7 @@ const NavBar = () => {
           title={`Points: ${pointCount}`}
           handleClick={() => {
             window.navigator.vibrate([200]);
-            router.push("/");
+            router.push("/points");
           }}
           btnStyle="bg-primary-blue text-white rounded-full w-[200px]"
         />

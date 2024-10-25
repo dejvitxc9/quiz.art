@@ -56,6 +56,9 @@ export const artData = createSlice({
         addArtData: (state, action) => {
             state.artData.push(action.payload);
         },
+        deleteAllArtData: (state) => {
+            state.artData = [];
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -68,6 +71,6 @@ export const artData = createSlice({
     },
 });
 
-export const { setArtData, addArtData } = artData.actions;
+export const { setArtData, addArtData, deleteAllArtData } = artData.actions;
 
 export default artData.reducer;

@@ -20,9 +20,14 @@ export const stateSlice = createSlice({
         },
         setQuizState: (state, action) => {
             state.quizState = action.payload
+        },
+        resetGame: (state) => {
+            state.quizState = "prepare";
+            state.currentQuestion = 0;
+            state.numberOfQuestion = 8;
         }
     }
 })
 
-export const { nextCurrentQuestion, previousCurrentQuestion, setNuberOfQuestions, setQuizState } = stateSlice.actions;
+export const { nextCurrentQuestion, previousCurrentQuestion, setNuberOfQuestions, setQuizState, resetGame } = stateSlice.actions;
 export default stateSlice.reducer;

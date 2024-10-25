@@ -13,7 +13,7 @@ export const userAnswersData = createSlice({
     name: "usersAnswer",
     initialState: { answers: <UserAnswer[]>[] },
     reducers: {
-        deleteAll: (state) => {
+        deleteAllAnswers: (state) => {
             state.answers = [];
         },
         addAnswer: (state, action) => {
@@ -31,5 +31,5 @@ export const userAnswersData = createSlice({
     }
 })
 
-export const { deleteAll, addAnswer, updateAnswer, removeAnswer } = userAnswersData.actions;
+export const { deleteAllAnswers, addAnswer, updateAnswer, removeAnswer } = userAnswersData.actions;
 export default userAnswersData.reducer;
