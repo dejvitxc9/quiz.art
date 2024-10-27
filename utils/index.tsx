@@ -56,14 +56,16 @@ export const saveQuizStatsToLocalStorage = (
 };
 
 export const loadQuizStatsFromLocalStorage = (): QuizArtStatsProps[] => {
+  if (typeof window === "undefined") return [];
+  
   const storedStats = localStorage.getItem("artQuizStats");
-  if (storedStats) {
-    try {
-      return JSON.parse(storedStats) as QuizArtStatsProps[];
-    } catch (error) {
-      console.error("Błąd podczas parsowania statystyk:", error);
-      return [];
-    }
+  if (!storedStats) return [];
+
+  try {
+    return JSON.parse(storedStats) as QuizArtStatsProps[];
+  } catch (error) {
+    console.error("Błąd podczas parsowania statystyk w loadQuizStatsFromLocalStorage:", error);
+    return [];
   }
-  return [];
 };
+
