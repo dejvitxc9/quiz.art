@@ -6,7 +6,6 @@ import {
   previousCurrentQuestion,
   setQuizState,
 } from "@/store/features/questionManagement/questionSlice";
-// import { addStats } from "@/store/features/statsSlice/statsSlice";
 
 import {
   addAnswer,
@@ -115,7 +114,7 @@ const ArtQuizCard = ({
   })();
 
   return (
-    <div className="flex flex-col bg-slate-600 text-white rounded-lg font-semibold p-4 gap-4">
+    <div className="flex flex-col bg-slate-600 text-white rounded-lg font-semibold p-4 gap-4 min-h-96">
       <div className="flex flex-col flex-wrap gap-4 sm:flex-row">
         <div className="flex flex-1 flex-col">
           <div className="flex justify-center bg-slate-500 rounded-lg min-w-48">
@@ -127,7 +126,7 @@ const ArtQuizCard = ({
           </div>
         </div>
         <div className="flex flex-1 flex-col">
-          <div className="flex flex-row justify-between content-center items-center">
+          <div className="flex flex-row justify-between content-center items-center mb-2">
             <h3 className="text-lg">{question}</h3>
             <div
               className={`py-4 px-4 size-16 flex justify-center items-center rounded-full font-bold text-3xl ${pointsColor[pointsMultiplier]}`}

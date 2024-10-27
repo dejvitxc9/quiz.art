@@ -7,6 +7,11 @@ export const getQuizArtIDs = (amount: number): string[] => {
   if (artIDList.length < amount) {
     return [];
   }
+  
+  if (amount === 0) {
+    return artIDList;
+  }
+
   const randomizedList = artIDList.sort(() => Math.random() - 0.5);
 
   const trimedList = randomizedList.slice(0, amount);
@@ -19,7 +24,7 @@ export const getQuizArtIDs = (amount: number): string[] => {
 
 const availablePoints = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4,
-  4, 4, 5, 5, 10,
+  4, 4, 5, 5, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 ];
 export const getRandomPointForQuestion = () => {
   return availablePoints[Math.floor(Math.random() * availablePoints.length)];
@@ -78,7 +83,8 @@ export const loadPointFromDevice = (): number => {
   try {
     const stats = JSON.parse(storedStats) as QuizArtStatsProps[];
     const points = stats.reduce(
-      (totalPoints: number, quizArtStatsProps: QuizArtStatsProps) => totalPoints + quizArtStatsProps.points,
+      (totalPoints: number, quizArtStatsProps: QuizArtStatsProps) =>
+        totalPoints + quizArtStatsProps.points,
       0
     );
     return points;

@@ -10,22 +10,38 @@ const Points = () => {
     <div className="main__container">
       <div className="flex-1 pt-36 padding-x">
         {Array.isArray(pointsState) && pointsState.length > 0 ? (
-          <table>
+          <table className="pointsStatsTable">
             <thead>
               <tr>
-                <th>Date</th>
-                <th>Level</th>
-                <th>Correct Answers</th>
-                <th>Collected Points</th>
+                <th className="border-solid border-2 border-gray-800 p-2">
+                  Date
+                </th>
+                <th className="border-solid border-2 border-gray-800 p-2">
+                  Level
+                </th>
+                <th className="border-solid border-2 border-gray-800 p-2">
+                  Correct Answers
+                </th>
+                <th className="border-solid border-2 border-gray-800 p-2">
+                  Collected Points
+                </th>
               </tr>
             </thead>
             <tbody>
               {pointsState.map((item: QuizArtStatsProps, index: number) => (
-                <tr key={index}>
-                  <td> {item.date}</td>
-                  <td>{item.level}</td>
-                  <td>{item.correctAnswers}</td>
-                  <td>{item.points}</td>
+                <tr key={index} className="odd:bg-gray-300 even:bg-gray-400 hover:bg-gray-600 hover:text-white">
+                  <td className="border-solid border-2 border-gray-800 p-2">
+                    {item.date}
+                  </td>
+                  <td className="border-solid border-2 border-gray-800 p-2">
+                    {item.level}
+                  </td>
+                  <td className="border-solid border-2 border-gray-800 p-2">
+                    {item.correctAnswers}
+                  </td>
+                  <td className="border-solid border-2 border-gray-800 p-2">
+                    {item.points}
+                  </td>
                 </tr>
               ))}
             </tbody>

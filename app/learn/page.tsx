@@ -16,7 +16,7 @@ const Learn = () => {
 
   useEffect(() => {
     const loadData = () => {
-      appDispatch(fetchArtData(getQuizArtIDs(10)));
+      appDispatch(fetchArtData(getQuizArtIDs(0)));
     };
     return () => loadData();
   }, []);
