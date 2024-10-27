@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import { artIDList } from "@/constans";
 import { GrantedPoints, QuizArtStatsProps } from "@/types";
