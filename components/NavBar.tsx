@@ -6,13 +6,20 @@ import CustomButton from "./CustomButton";
 import { useRouter } from "next/navigation";
 import { RootState, useAppDispatch } from "./../store/store";
 import { useSelector } from "react-redux";
-import { setQuizState } from "@/store/features/questionManagement/questionSlice";
+import { loadPointFromDevice } from "@/utils";
+import { useEffect } from "react";
+import { setPoints } from "@/store/features/points/pointsSlice";
 
 const NavBar = () => {
   const router = useRouter();
-
   const pointCount = useSelector((state: RootState) => state.points.value);
-  const appDispatch = useAppDispatch();
+  const appdispatch = useAppDispatch();
+
+  useEffect(() => {
+    return () => {
+      appdispatch(setPoints(loadPointFromDevice()));
+    };
+  }, []);
 
   return (
     <header className="w-full absolute z-10">

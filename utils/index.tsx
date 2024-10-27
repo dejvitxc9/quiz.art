@@ -57,15 +57,33 @@ export const saveQuizStatsToLocalStorage = (
 
 export const loadQuizStatsFromLocalStorage = (): QuizArtStatsProps[] => {
   if (typeof window === "undefined") return [];
-  
+
   const storedStats = localStorage.getItem("artQuizStats");
   if (!storedStats) return [];
 
   try {
     return JSON.parse(storedStats) as QuizArtStatsProps[];
   } catch (error) {
-    console.error("Błąd podczas parsowania statystyk w loadQuizStatsFromLocalStorage:", error);
+    console.error("Error during loading stats:", error);
     return [];
   }
 };
 
+export const loadPointFromDevice = (): number => {
+  if (typeof window === "undefined") return 0;
+
+  const storedStats = localStorage.getItem("artQuizStats");
+  if (!storedStats) return 0;
+
+  try {
+    const stats = JSON.parse(storedStats) as QuizArtStatsProps[];
+    const points = stats.reduce(
+      (totalPoints: number, quizArtStatsProps: QuizArtStatsProps) => totalPoints + quizArtStatsProps.points,
+      0
+    );
+    return points;
+  } catch (error) {
+    console.error("Error during loading points:", error);
+    return 0;
+  }
+};

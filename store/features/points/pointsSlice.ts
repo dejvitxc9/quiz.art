@@ -1,5 +1,6 @@
 'use client'
 
+import { loadPointFromDevice } from "@/utils"
 import { createSlice } from "@reduxjs/toolkit"
 
 export interface PointState { value: number }
