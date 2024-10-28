@@ -27,7 +27,6 @@ const ArtQuizCard = ({
   questionType,
   pointsMultiplier,
 }: QuizDataProps) => {
-
   const appDispatch = useAppDispatch();
 
   const currentQuestion = useSelector(
@@ -105,7 +104,7 @@ const ArtQuizCard = ({
       case "date_end":
         return "In which year did the production of this art end?";
       case "style_title":
-        return "What art style is represented in this piece?";
+        return "What art style is represented in this artwork?";
       case "department_title":
         return "Which department does this art belong to?";
       default:
@@ -114,10 +113,10 @@ const ArtQuizCard = ({
   })();
 
   return (
-    <div className="flex flex-col bg-slate-600 text-white rounded-lg font-semibold p-4 gap-4 min-h-96">
+    <div className="flex flex-col bg-slate-600 text-white rounded-lg font-semibold p-4 gap-4">
       <div className="flex flex-col flex-wrap gap-4 sm:flex-row">
         <div className="flex flex-1 flex-col">
-          <div className="flex justify-center bg-slate-500 rounded-lg min-w-48">
+          <div className="flex justify-center bg-slate-500 rounded-lg min-w-48 min-h-96">
             <img
               className="image-ratio object-contain rounded-lg"
               alt={`Image in Question`}
@@ -146,7 +145,7 @@ const ArtQuizCard = ({
                   <button
                     key={index}
                     className={`flex-1 bg-gray-800 hover:bg-gray-700 text-white py-2 px-4 rounded-lg ${
-                      answer === answercor ? "bg-green-400" : ""
+                      answer === answercor ? "zbg-green-400" : ""
                     }`}
                     onClick={() => selectAnswer(answer)}
                   >

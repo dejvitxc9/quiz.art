@@ -11,6 +11,14 @@
   font-family: "Manrope", sans-serif;
 }
 
+body {
+  background-color: #a7b3be
+}
+
+.bg-btn-menu {
+  background-color: #99C1B9
+}
+
 .max-width {
   @apply max-w-[1440px] mx-auto;
 }
@@ -130,9 +138,3 @@
 .pointsStatsTable {
   border-collapse: collapse;
 }
-
-/* .pointsStatsTable td,
-.pointsStatsTable th {
-  border: 1px solid black;
-  padding: .25rem;
-} */

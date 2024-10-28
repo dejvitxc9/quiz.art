@@ -24,7 +24,7 @@ const NavBar = () => {
   return (
     <header className="w-full absolute z-10">
       <nav className="max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-4">
-        <Link href={"/"} className="flex justify-center items-center ">
+        <Link href={"/"} className="flex justify-center items-center">
           <Image
             src={"/logo.png"}
             alt="hero logo"
@@ -36,7 +36,7 @@ const NavBar = () => {
 
         <CustomButton
           title="Home"
-          btnStyle="bg-cyan-700 text-white rounded-full hidden sm:block"
+          btnStyle="bg-teal-600 text-white font-bold rounded-full hidden sm:block"
           handleClick={() => {
             window.navigator.vibrate([70]);
             router.push("/");
@@ -48,7 +48,7 @@ const NavBar = () => {
             window.navigator.vibrate([70]);
             router.push("/learn");
           }}
-          btnStyle="bg-cyan-700 text-white rounded-full"
+          btnStyle="bg-teal-600 text-white font-bold rounded-full"
         />
         <CustomButton
           title="Quiz"
@@ -56,15 +56,15 @@ const NavBar = () => {
             window.navigator.vibrate([70]);
             router.push("/quiz");
           }}
-          btnStyle="bg-cyan-700 text-white rounded-full"
+          btnStyle="bg-teal-600 text-white font-bold rounded-full"
         />
         <CustomButton
           title={`Points: ${pointCount}`}
-          handleClick={() => {
+          handleClick={(e) => {
             window.navigator.vibrate([200]);
             router.push("/points");
           }}
-          btnStyle="bg-cyan-700 text-white rounded-full w-[200px]"
+          btnStyle="bg-teal-600 text-white font-bold rounded-full"
         />
       </nav>
     </header>

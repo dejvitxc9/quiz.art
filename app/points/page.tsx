@@ -9,48 +9,41 @@ const Points = () => {
   return (
     <div className="main__container">
       <div className="flex-1 pt-36 padding-x">
+        <div className="flex flex-col bg-slate-600 text-white rounded-lg font-semibold p-4">
         {Array.isArray(pointsState) && pointsState.length > 0 ? (
-          <table className="pointsStatsTable">
-            <thead>
-              <tr>
-                <th className="border-solid border-2 border-gray-800 p-2">
+            <>
+              <div className="grid grid-cols-4 rounded-t-lg overflow-hidden">
+                <div className="bg-teal-900 text-white p-2 font-bold">
                   Date
-                </th>
-                <th className="border-solid border-2 border-gray-800 p-2">
+                </div>
+                <div className="bg-teal-900 text-white p-2 font-bold">
                   Level
-                </th>
-                <th className="border-solid border-2 border-gray-800 p-2">
+                </div>
+                <div className="bg-teal-900 text-white p-2 font-bold">
                   Correct Answers
-                </th>
-                <th className="border-solid border-2 border-gray-800 p-2">
+                </div>
+                <div className="bg-teal-900 text-white p-2 font-bold">
                   Collected Points
-                </th>
-              </tr>
-            </thead>
-            <tbody>
+                </div>
+              </div>
               {pointsState.map((item: QuizArtStatsProps, index: number) => (
-                <tr key={index} className="odd:bg-gray-300 even:bg-gray-400 hover:bg-gray-600 hover:text-white">
-                  <td className="border-solid border-2 border-gray-800 p-2">
-                    {item.date}
-                  </td>
-                  <td className="border-solid border-2 border-gray-800 p-2">
-                    {item.level}
-                  </td>
-                  <td className="border-solid border-2 border-gray-800 p-2">
-                    {item.correctAnswers}
-                  </td>
-                  <td className="border-solid border-2 border-gray-800 p-2">
-                    {item.points}
-                  </td>
-                </tr>
+                <div
+                  key={index}
+                  className={`grid grid-cols-4 odd:bg-gray-300 even:bg-gray-400 hover:bg-gray-600 hover:text-white last-of-type:rounded-b-lg`}
+                >
+                  <div className="p-2">{item.date}</div>
+                  <div className="p-2">{item.level}</div>
+                  <div className="p-2">{item.correctAnswers}</div>
+                  <div className="p-2">{item.points}</div>
+                </div>
               ))}
-            </tbody>
-          </table>
-        ) : (
-          <p className="stats-not-found">
-            Sorry we couldn't find any data to show ☹
-          </p>
-        )}
+            </>
+          ) : (
+            <p className="stats-not-found">
+              Sorry we couldn't find any data to show ☹
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
