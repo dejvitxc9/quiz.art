@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quiz Art
 
-## Getting Started
+## Opis
 
-First, run the development server:
+Quiz Art to interaktywna aplikacja edukacyjna, która pozwala użytkownikom sprawdzić swoją wiedzę na temat sztuki dzięki quizom. Aplikacja ma na celu odkrycie wyjątkowych dzieł sztuki, umożliwiaja użytkownikom testowanie swoich umiejętności oraz poznawanie nowych informacji na temat artystów i stylów.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Funkcje
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Różnorodne quizy dotyczące sztuki
+- Możliwość śledzenia wyników i postępów
+- Intuicyjny interfejs użytkownika
+- Responsywność na urządzeniach mobilnych
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Jak używać
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Odwiedź [Quiz Art](https://quizart.netlify.app/).
+2. Wybierz quiz, który chcesz rozpocząć.
+3. Odpowiedz na pytania i sprawdź swoje wyniki na końcu quizu.
 
-## Learn More
+## Instalacja
 
-To learn more about Next.js, take a look at the following resources:
+Aby zainstalować aplikację lokalnie, wykonaj poniższe kroki:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+  # 1. Sklonuj repozytorium:
+   git clone https://github.com/TWOJE_GITHUB_USERNAME/quiz.art.git
+  # 2. Przejdź do folderu projektu:
+   cd quiz.art
+  # 3. Zainstaluj zależności:
+  npm install
+  # 4. Uruchom aplikację:
+  npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Technologie
+- React
+- Redux
+- Next.js
+- TypeScript
