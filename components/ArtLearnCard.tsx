@@ -23,18 +23,22 @@ const ArtContainer = ({
         </div>
         <div className="flex flex-row flex-wrap justify-between mt-4 gap-4">
           <div className="p-2 bg-slate-500 rounded-lg">
-            Style: {style_title}
+            <p>Style: {style_title}</p>
           </div>
           <div className="p-2 bg-slate-500 rounded-lg">
-            Creation started: {date_start}
+            <p>Creation started: {date_start}</p>
           </div>
           <div className="p-2 bg-slate-500 rounded-lg">
-            Creation ended: {date_end}
+            <p>Creation ended: {date_end}</p>
           </div>
         </div>
       </div>
 
       <div className="flex flex-1 flex-col gap-4">
+        <div className="p-2 bg-slate-500 rounded-lg">
+          <h2 className="mb-2 text-xl">Author: {artist_title}</h2>
+          <h3 className="text-zinc-50">Title: {title}</h3>
+        </div>
         <div className="p-2 bg-slate-500 rounded-lg">
           Stored in: {department_title}
         </div>
