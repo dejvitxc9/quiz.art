@@ -10,8 +10,6 @@ import { RootState, useAppDispatch } from "@/store/store";
 import { useSelector } from "react-redux";
 
 const QuizSummary = () => {
-  const appDispatch = useAppDispatch();
-
   const userAnswers = useSelector(
     (state: RootState) => state.userAnswers.answers
   );
@@ -31,6 +29,7 @@ const QuizSummary = () => {
     },
     { totalPoints: 0, correctQuestions: 0 }
   );
+  const appDispatch = useAppDispatch();
 
   const handleRestartQuiz = () => {
     appDispatch(deleteAllAnswers());

@@ -1,19 +1,21 @@
-import ArtLearnCard from "./ArtLearnCard";
-import ArtQuizCard from "./ArtQuizCard";
-import CustomButton from "./CustomButton";
+import NavBar from "./NavBar";
 import Footer from "./Footer";
 import HomePage from "./HomePage";
 import LoadingAnim from "./LoadingAnim";
-import NavBar from "./NavBar";
+import ArtQuizCard from "./ArtQuizCard";
 import PrepareQuiz from "./PrepareQuiz";
+import QuizSummary from "./QuizSummary";
+import CustomButton from "./CustomButton";
+import ArtLearnCard from "./ArtLearnCard";
 
 export {
   NavBar,
   Footer,
-  CustomButton,
   HomePage,
-  ArtLearnCard,
-  ArtQuizCard,
   LoadingAnim,
+  ArtQuizCard,
   PrepareQuiz,
+  QuizSummary,
+  CustomButton,
+  ArtLearnCard,
 };

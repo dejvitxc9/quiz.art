@@ -4,22 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import CustomButton from "./CustomButton";
 import { useRouter } from "next/navigation";
-import { RootState, useAppDispatch } from "./../store/store";
-import { useSelector } from "react-redux";
+import { RootState } from "./../store/store";
+import { useSelector, useDispatch } from "react-redux";
 import { loadPointFromDevice } from "@/utils";
 import { useEffect } from "react";
 import { setPoints } from "@/store/features/points/pointsSlice";
 
 const NavBar = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const pointCount = useSelector((state: RootState) => state.points.value);
-  const appdispatch = useAppDispatch();
 
   useEffect(() => {
-    return () => {
-      appdispatch(setPoints(loadPointFromDevice()));
-    };
-  }, []);
+    const points = loadPointFromDevice();
+    dispatch(setPoints(points));
+  }, [dispatch]);
 
   return (
     <header className="w-full absolute z-10">
@@ -33,7 +32,6 @@ const NavBar = () => {
             className="object-cover"
           />
         </Link>
-
         <CustomButton
           title="Home"
           btnStyle="bg-teal-600 text-white font-bold rounded-full hidden sm:block"
@@ -60,8 +58,8 @@ const NavBar = () => {
         />
         <CustomButton
           title={`Points: ${pointCount}`}
-          handleClick={(e) => {
-            window.navigator.vibrate([200]);
+          handleClick={() => {
+            window.navigator.vibrate([70]);
             router.push("/points");
           }}
           btnStyle="bg-teal-600 text-white font-bold rounded-full"
@@ -70,4 +68,5 @@ const NavBar = () => {
     </header>
   );
 };
+
 export default NavBar;

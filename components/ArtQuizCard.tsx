@@ -36,9 +36,10 @@ const ArtQuizCard = ({
     (state: RootState) => state.currentQuestion.numberOfQuestion
   );
 
-  const usersChoice = useSelector(
-    (state: RootState) => state.userAnswers.answers[currentQuestion]
-  );
+  const usersChoice: UserAnswer | undefined = useSelector((state: RootState) =>
+    state.userAnswers.answers.find((item: UserAnswer) => item.questionNumber === currentQuestion)
+  ); 
+  
   const [mixedAnswers, setMixedAnswers] = useState<string[]>([]);
 
   useEffect(() => {
@@ -52,10 +53,10 @@ const ArtQuizCard = ({
   const selectAnswer = (ans: string) => {
     appDispatch(
       addAnswer({
-        questionNumber: currentQuestion, // Numer aktualnego pytania
-        correctAnswer: answercor, // Poprawna odpowiedź
-        userAnswer: ans, // Wybór użytkownika
-        points: ans === answercor ? pointsMultiplier : 0, // Przyznanie punktu, jeśli odpowiedź jest poprawna
+        questionNumber: currentQuestion,
+        correctAnswer: answercor,
+        userAnswer: ans,
+        points: ans === answercor ? pointsMultiplier : 0,
       })
     );
   };

@@ -7,7 +7,7 @@ export const getQuizArtIDs = (amount: number): string[] => {
   if (artIDList.length < amount) {
     return [];
   }
-  
+
   if (amount === 0) {
     return artIDList;
   }
@@ -60,24 +60,27 @@ export const saveQuizStatsToLocalStorage = (
   localStorage.setItem("artQuizStats", JSON.stringify(statsArray));
 };
 
-export const loadQuizStatsFromLocalStorage = (): QuizArtStatsProps[] => {
+export const loadQuizStatsFromLocalStorage = () => {
   if (typeof window === "undefined") return [];
 
   const storedStats = localStorage.getItem("artQuizStats");
   if (!storedStats) return [];
 
   try {
-    return JSON.parse(storedStats) as QuizArtStatsProps[];
+    const stats = JSON.parse(storedStats);
+    console.log("Loaded quiz stats:", stats);
+    return stats;
   } catch (error) {
-    console.error("Error during loading stats:", error);
+    console.error("Error parsing quiz stats:", error);
     return [];
   }
 };
 
-export const loadPointFromDevice = (): number => {
+export const loadPointFromDevice = () => {
   if (typeof window === "undefined") return 0;
 
   const storedStats = localStorage.getItem("artQuizStats");
+
   if (!storedStats) return 0;
 
   try {
